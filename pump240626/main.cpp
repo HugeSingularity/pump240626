@@ -1,5 +1,4 @@
-﻿#include <cstdio>
-#include <cmath>
+﻿#include "solveCubic.h"
 
 struct stepTwoOut	//第二步输出的变量
 {
