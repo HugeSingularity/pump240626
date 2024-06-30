@@ -1,7 +1,7 @@
-#include "calc.h"
-#include "solveCubic.h"
 #include <cmath>
 #include <stdexcept>
+#include "calc.h"
+#include "solveCubic.h"
 
 using namespace std;
 
