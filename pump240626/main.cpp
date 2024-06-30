@@ -1,53 +1,18 @@
 ﻿#include "solveCubic.h"
-
-struct stepTwoOut	//第二步输出的变量
-{
-	double a[4] = {}, b[5] = {}, c[5] = {};
-};
-
-stepTwoOut stepTwo()	//未解决的程序
-{
-	stepTwoOut tmp;
-
-	return tmp;
-}
-
-struct stepThreeIn    //第三步输入的变量
-{
-	double Hx = 0, fx = 0, N = 0;   //Hx为当前压力，fx为当前频率，N为当前台数
-};
-
-stepThreeIn in()   //输入Hx, fx, N	//未解决的程序
-{
-	stepThreeIn tmp;
+#include "calc.h"
 
 
-	return tmp;
-}
 
-struct stepThreeOut   //第三步输出的变量
-{
-	double Qx = 0, nx = 0, Px = 0;	//Qx为当前流量，nx为当前效率，Px为当前功率
-};
 
-double ciFang(double a, int b)	//求a的b次方
-{
-	double tmp;
-	for (int i = 0; i < b; i++)
-		double tmp = tmp * a;
-	return tmp;
-}
 
-stepThreeOut stepThree(stepTwoOut tmpOut2, stepThreeIn tmpIn3)	//获得a[i], b[i], c[i]	//计算并返回Qx, nx, Px的值
-{
-	stepThreeOut tmpOut3;
-	tmpOut3.Qx = ?;		//求Qx的值	//未解决的程序
-	double tmp1 = 50 / tmpIn3.N / tmpIn3.fx * tmpOut3.Qx;	//用于简化下一步的程序
-	tmpOut3.nx = tmpOut2.b[1] * tmp1 + tmpOut2.b[2] * ciFang(tmp1, 2) + tmpOut2.b[3] * ciFang(tmp1, 3) + tmpOut2.b[4] * ciFang(tmp1, 4);	//求nx的值
-	double tmp2 = tmpIn3.fx / 50, tmp3 = 50 / tmpIn3.fx, tmp4 = 1 / tmpIn3.N;	//用于简化下一步的程序
-	tmpOut3.Px = tmpOut2.c[0] * ciFang(tmp2, 3) + tmpOut2.c[1] * ciFang(tmp2, 2) * tmp4 * tmpOut3.Qx + tmpOut2.c[2] * ciFang(tmp4, 2) * tmp2 * ciFang(tmpOut3.Qx, 2) + tmpOut2.c[3] * ciFang(tmp4, 3) * ciFang(tmpOut3.Qx, 3) + tmpOut2.c[4] * ciFang(tmp4, 4) * ciFang(tmpOut3.Qx, 4) * tmp3;	//求Px的值
-	return tmpOut3;		//返回Qx, nx, Px的值
-}
+
+
+
+
+
+
+
+
 
 struct stepFour1Out
 {

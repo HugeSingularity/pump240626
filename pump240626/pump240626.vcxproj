@@ -76,10 +76,12 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
+    <ClCompile Include="calc.cpp" />
     <ClCompile Include="solveCubic.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="calc.h" />
     <ClInclude Include="solveCubic.h" />
   </ItemGroup>
   <ItemDefinitionGroup />
