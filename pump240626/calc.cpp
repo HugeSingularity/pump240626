@@ -45,18 +45,24 @@ stepTwoOut GetStepTwo()
 }
 
 
-stepThreeIn GetStepThreeIn()   
+stepThreeIn GetStepThreeIn(double Hx, double fx, int N )   
 {
-	stepThreeIn tmp(60,45,1);
-	//throw runtime_error("not implemented");
-	return tmp;
+
+	if (Hx > 0 && fx > 0 && N > 0)
+		return stepThreeIn(Hx,fx,N);		
+	else
+		throw runtime_error("not implemented");
 }
 
-double GetSettingH()
+double GetSettingH(double Hx)
 {
-	//throw runtime_error("not implemented");
-	Hs = 51;
-	return Hs;
+	if (Hx > 0)
+	{
+		Hs = Hx;
+		return Hx;
+	}
+	else
+		throw runtime_error("not implemented");
 }
 
 stepThreeOut CalcStepThree(stepTwoOut constant, stepThreeIn calcParams)	//获得a[i], b[i], c[i]	//计算并返回Qx, nx, Px的值

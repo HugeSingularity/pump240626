@@ -14,7 +14,7 @@ struct stepThreeIn    //第三步输入的变量
 {
 	double Hx = 0, fx = 0, N = 0;   //Hx为当前压力，fx为当前频率，N为当前台数
 
-	stepThreeIn(double Hx, double fx, double N) : Hx(Hx), fx(fx), N(N)
+	stepThreeIn(double Hx, double fx, int N) : Hx(Hx), fx(fx), N(N)
 	{
 
 	}
@@ -51,13 +51,13 @@ stepTwoOut GetStepTwo();
 /*
 	从PLC中获取当前压力Hx，当前频率fx，当前运行台数N
 */
-stepThreeIn GetStepThreeIn();
+stepThreeIn GetStepThreeIn(double Hx, double fx, int N);
 
 /// <summary>
 /// 获取设定压力
 /// </summary>
 /// <returns></returns>
-double GetSettingH();
+double GetSettingH(double Hx);
 
 /*
 	根据输入的压力，频率，运行台数，计算出当前流量Qx，效率nx，功率Px
