@@ -119,6 +119,64 @@ runtimeParams CalcRuntimParams(stepTwoOut constant)
 	return prams;
 }
 
+runtimeParams CalcBestSwitchingPoint(stepTwoOut constant, runtimeParams Qmax)
+{
+	runtimeParams prams;
+
+	for (int i = 1; i <= 3; i++)
+	{
+		if (Qmax.nN[i] >= Qmax.nNp1[i])	//如果一台泵效率高于二台泵效率，最大流量即为最佳切换点
+		{
+			prams.Qmax[i] = Qmax.Qmax[i];
+			prams.fN[i] = Qmax.fN[i];
+			prams.fNp1[i] = Qmax.fNp1[i];
+			prams.nN[i] = Qmax.nN[i];
+			prams.nNp1[i] = Qmax.nNp1[i];
+		}
+		else
+		{
+			//二分法计算
+			auto result = Bisection(constant, i, Qmax.Qmax[i - 1], Qmax.Qmax[i], Qmax.fN[i - 1], Qmax.fN[i]);
+			prams.Qmax[i] = result.Qmax[0];
+			prams.fN[i] = result.fN[0];
+			prams.fNp1[i] = result.fNp1[0];
+			prams.nN[i] = result.nN[0];
+			prams.nNp1[i] = result.nNp1[0];
+		}
+
+	}
+	return prams;
+	
+}
+
+runtimeParams Bisection(stepTwoOut constant, int N, double Qmin, double Qmax, double fQmin, double fQmax)
+{
+	runtimeParams tmp;
+
+	auto Qx = (Qmax + Qmin) / 2;
+	double fN = CalcFrequency(constant.a, N, Qx, Hs);
+	double fNp1 = CalcFrequency(constant.a, N + 1, Qx, Hs);
+	double nN = CalcEfficiency(constant.b, N, fN, Qx);
+	double nNp1 = CalcEfficiency(constant.b, N + 1, fNp1, Qx);
+	if (fQmax - fQmin < 0.05 || Exponent(nNp1 - nN, 2) < 1e-7)
+	{
+		tmp.Qmax[0] = Qx;
+		tmp.fN[0] = fN;
+		tmp.nN[0] = nN;
+		tmp.fNp1[0] = fNp1;
+		tmp.nNp1[0] = nNp1;
+	}
+	else if (nN > nNp1)
+	{
+		tmp = Bisection(constant, N, Qx, Qmax, fN, fQmax);
+	}
+	else
+	{
+		tmp = Bisection(constant, N, Qmin, Qx, fQmin, fN);
+	}
+	return tmp;
+}
+
 double CalcFrequency(double a[4], int N, double Q, double H)
 {
 	double Q1 = Q, Q2 = Exponent(Q, 2), Q3 = Exponent(Q, 3);

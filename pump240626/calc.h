@@ -82,6 +82,26 @@ double Reciprocal(double a);
 runtimeParams CalcRuntimParams(stepTwoOut constant);
 
 /// <summary>
+/// 计算最佳切换点
+/// </summary>
+/// <param name="constant">常量参数</param>
+/// <param name="Qmax">最大流量参数</param>
+/// <returns></returns>
+runtimeParams CalcBestSwitchingPoint(stepTwoOut constant, runtimeParams Qmax);
+
+/// <summary>
+/// 二分法计算最优解
+/// </summary>
+/// <param name="constant">常量参数</param>
+/// <param name="N">当前设备数</param>
+/// <param name="Qmin">最小流量</param>
+/// <param name="Qmax">最大流量</param>
+/// <param name="fQmin">最小流量时的频率</param>
+/// <param name="fQmax">最大流量时的频率</param>
+/// <returns></returns>
+runtimeParams Bisection(stepTwoOut constant, int N, double Qmin, double Qmax, double fQmin, double fQmax);
+
+/// <summary>
 /// 计算频率
 /// </summary>
 /// <param name="a">常量参数a0~a3</param>
