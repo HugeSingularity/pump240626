@@ -136,7 +136,7 @@ runtimeParams CalcBestSwitchingPoint(stepTwoOut constant, runtimeParams Qmax)
 		else
 		{
 			//二分法计算
-			auto result = Bisection(constant, i, Qmax.Qmax[i - 1], Qmax.Qmax[i], Qmax.fN[i - 1], Qmax.fN[i]);
+			auto result = Bisection(constant, i, Qmax.Qmax[i - 1], Qmax.Qmax[i], Qmax.fNp1[i - 1], Qmax.fN[i]);
 			prams.Qmax[i] = result.Qmax[0];
 			prams.fN[i] = result.fN[0];
 			prams.fNp1[i] = result.fNp1[0];
